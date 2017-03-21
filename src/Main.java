@@ -41,7 +41,7 @@ class Room{
     
     String[][] map;
     
-    public Room(int h int w){
+    public Room(int h, int w){
         map = new String[w][h];
         for (int x = 0; x < w; x++){
             for (int y = 0; y < h; y++){
