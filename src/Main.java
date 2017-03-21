@@ -25,7 +25,8 @@ public class Main {
     public static void main(String args[]){
         System.out.println("Hello World!");
 
-
+        Crate c = new Crate(5);
+        
 
 
 
@@ -43,6 +44,14 @@ class Crate{
         for (int x = 0; x < wealth; x++){
             content.add(new Loot("crate"));
         }
+    }
+    
+    public String ToString(){
+        String s;
+        for (int x = 0; x < wealth; x++){
+            s += "\n\t" + x + ": " + content.get(x);
+        }
+        return s;
     }
 
 }
