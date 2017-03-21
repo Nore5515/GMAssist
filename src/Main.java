@@ -19,7 +19,7 @@ import java.util.ArrayList;
         //chests should hold highly-prized valuables, like weapons, jewelry and books
     //For holes
         //holes are holes.
-
+    //I also want to be able to set the size of the room
 
 
 public class Main {
@@ -28,11 +28,40 @@ public class Main {
 
         Crate c = new Crate(5);
         System.out.println(c.ToString());
-
+        
+        Room r = new Room(3,8);
+        System.out.println("\n" + r.ToString());
 
 
 
     }
+}
+
+class Room{
+    
+    String[][] map;
+    
+    public Room(int w, int h){
+        map = new String[w][h];
+        for (int x = 0; x < w; x++){
+            for (int y = 0; y < h; y++){
+                map[x][y] = ".";
+            }
+        }
+    }
+    
+    public String ToString(){
+        String s = new String();
+        for (int x = 0; x < map[0].length; x++){
+            for (int y = 0; y < map.length; y++){
+                s += map[x][y];
+            }
+            s += "\n";
+        }
+        return s;
+    }
+    
+    
 }
 
 class Crate{
