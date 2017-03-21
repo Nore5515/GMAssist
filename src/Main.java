@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Hello World!");
 
         Crate c = new Crate(5);
-        
+        System.out.println(c.ToString());
 
 
 
@@ -49,7 +49,7 @@ class Crate{
     public String ToString(){
         String s;
         for (int x = 0; x < wealth; x++){
-            s += "\n\t" + x + ": " + content.get(x);
+            s += "\n\t" + x + ": " + content.get(x).loot;
         }
         return s;
     }
