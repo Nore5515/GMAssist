@@ -47,7 +47,7 @@ class Crate{
     }
     
     public String ToString(){
-        String s;
+        String s = new String();
         for (int x = 0; x < wealth; x++){
             s += "\n\t" + x + ": " + content.get(x).loot;
         }
@@ -160,7 +160,7 @@ class Loot{
                 loot = "Ingots";
             }
             else if (chance == 3){
-                loot = "Fruit Jam"
+                loot = "Fruit Jam";
             }
             else if (chance == 4){
                 loot = "Overcoat";
