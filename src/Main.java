@@ -29,7 +29,7 @@ public class Main {
         Crate c = new Crate(5);
         System.out.println(c.ToString());
         
-        Room r = new Room(5,5);
+        Room r = new Room(7,7);
         System.out.println("\n" + r.ToString());
 
 
@@ -45,7 +45,15 @@ class Room{
         map = new String[w][h];
         for (int x = 0; x < w; x++){
             for (int y = 0; y < h; y++){
-                map[x][y] = ".";
+                if (x == 0 || x == w-1){
+                    map[x][y] = "W";
+                }
+                else if (y == 0 || y == h-1){
+                    map[x][y] = "W";
+                }
+                else{
+                    map[x][y] = ".";
+                }
             }
         }
     }
