@@ -29,7 +29,7 @@ public class Main {
         Crate c = new Crate(5);
         System.out.println(c.ToString());
         
-        Room r = new Room(3,8);
+        Room r = new Room(5,5);
         System.out.println("\n" + r.ToString());
 
 
