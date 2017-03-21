@@ -123,7 +123,73 @@ class Loot{
             else if (chance == 12){
                 loot = "Honey";
             }
+            else if (chance == 13 || chance == 14){
+                loot = "Grain";
+            }
+            else if (chance == 15){
+                loot = "Hay";
+            }
+            else if (chance == 16 && chance == 17){
+                loot = "Milk";
+            }
+            else if (chance == 18 || chance == 19){
+                loot = "Salt";
+            }
+            else if (chance == 20){
+                loot = "Saffron";
+            }
+            else{
+                loot = "ERR";
+            }
         }    
+        else if (type.equals("chest")){
+            int chance = rand.nextInt(20)+1;
+            if (chance == 1){
+                loot = "Blouse";
+            }
+            else if (chance == 2){
+                loot = "Ingots";
+            }
+            else if (chance == 3){
+                loot = "Fruit Jam"
+            }
+            else if (chance == 4){
+                loot = "Overcoat";
+            }
+            else if (chance == 5){
+                loot = "Boots";
+            }
+            else if (chance == 6){
+                loot = "Trousers";
+            }
+            else if (chance == 7){
+                loot = "Knife";
+            }
+            else if (chance == 8){
+                loot = "Hat";
+            }
+            else if (chance == 9){
+                loot = "Gloves";
+            }
+            else if (chance == 10 || chance == 11){
+                loot = "Book";
+            }
+            else if (chance == 12){
+                loot = "Deed";
+            }
+            else if (chance == 13 || chance == 14){
+                loot = "Weapon";
+            }
+            else if (chance == 15 || chance == 16){
+                loot = "Armor";
+            }
+            else if (chance == 17 || chance == 18){
+                loot = "Ring";
+            }
+            else if (chance == 19 || chance == 20){
+                loot = "Potion";
+            }
+        }
     }
 
 }
