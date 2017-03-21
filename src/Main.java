@@ -69,6 +69,22 @@ class Room{
         return s;
     }
     
+    public void AddCrates(){
+        for (int x = 0; x < map.length; x++){
+            for (int y = 0; y < map[0].length; y++){
+                
+            }
+        }
+    }
+    
+    public String[] AdjacentTiles(int xLoc, int yLoc){
+        String[] adj = new String[8];
+        if (map[xLoc-1][yLoc-1] != null){
+            
+        }
+        
+    }
+    
     
 }
 
