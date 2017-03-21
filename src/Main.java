@@ -56,10 +56,74 @@ class Loot{
         Random rand = new Random();
         type = _type;
         if (type.equals("crate")){
-            int chance = rand.nextInt(100)+1;
-            if (chance <= 5){
+            int chance = rand.nextInt(20)+1;
+            if (chance == 1){
+                loot = "Coal";
+            }
+            else if (chance == 2){
+                loot = "Ingots";
+            }
+            else if (chance == 3 || chance == 4){
+                loot = "Shovel";
+            }
+            else if (chance == 5 || chance == 6){
+                loot = "Pick";
+            }
+            else if (chance == 7){
+                loot = "Eggs";
+            }
+            else if (chance == 8 || chance == 9){
+                loot = "Hide";
+            }
+            else if (chance == 10){
+                loot = "Hay";
+            }
+            else if (chance == 11 || chance == 12 || chance == 13){
+                loot = "Wood";
+            }
+            else if (chance == 14){
+                loot = "Knife";
+            }
+            else if (chance == 15 || chance == 16){
+                loot = "Plow";
+            }
+            else if (chance == 16 || chance == 17){
+                loot = "Saddle";
+            }
+            else if (chance == 18 || chance == 19){
+                loot = "Hoe";
+            }
+            else if (chance == 20){
+                loot = "Bricks";
+            }
+            else{
+                loot = "ERR";
             }
         }
+        else if (type.equals("barrel")){
+            int chance = rand.nextInt(20)+1;
+            if (chance == 1){
+                loot = "Seeds";
+            }
+            else if (chance == 2 || chance == 3){
+                loot = "Dried Meat";
+            }
+            else if (chance == 4 || chance == 5){
+                loot = "Dried Veggies";
+            }
+            else if (chance == 6){
+                loot = "Fruit Jam";
+            }
+            else if (7 <= chance && chance <= 9){
+                loot = "Water";
+            }
+            else if (chance == 10 || chance == 11){
+                loot = "Alcohol";
+            }
+            else if (chance == 12){
+                loot = "Honey";
+            }
+        }    
     }
 
 }
