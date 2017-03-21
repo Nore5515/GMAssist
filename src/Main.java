@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  * Created by Nore5515 on 3/19/2017.
@@ -41,6 +42,7 @@ class Crate{
 
     public Crate(int _wealth){
         wealth = _wealth;
+        content = new ArrayList<Loot>();
         for (int x = 0; x < wealth; x++){
             content.add(new Loot("crate"));
         }
