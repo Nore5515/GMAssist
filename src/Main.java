@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Nore5515 on 3/19/2017.
@@ -49,10 +50,16 @@ class Crate{
 class Loot{
 
     String type;
+    String loot;
 
     public Loot(String _type){
+        Random rand = new Random();
         type = _type;
-
+        if (type.equals("crate")){
+            int chance = rand.nextInt(100)+1;
+            if (chance <= 5){
+            }
+        }
     }
 
 }
