@@ -20,36 +20,81 @@ import java.util.ArrayList;
     //For holes
         //holes are holes.
     //I also want to be able to set the size of the room
+    //room key
+    //  . is empty
+    //  W is wall
+    //  C is crate
+    //  B is barrel
+    //  H is hole
 
 
 public class Main {
     public static void main(String args[]){
         System.out.println("Hello World!");
 
-        Crate c = new Crate(5);
-        System.out.println(c.ToString());
+        //Crate c = new Crate(5);
+        //System.out.println(c.ToString());
         
         Room r = new Room(7,7);
         System.out.println("\n" + r.ToString());
+        r.AddCrates();
+        r.AddBarrels();
+        r.AddHoles();
+        System.out.println("\n" + r.ToString());
 
+        /*String[] sList = r.AdjacentTiles(1,1);
+        System.out.println("\n\n");
+        for (int x = 0; x < 9; x++) {
+            System.out.print(sList[x] + "\t");
+        }*/
 
 
     }
 }
 
+//Room uses W for walls
+//. for empty space
+
 class Room{
     
     String[][] map;
+    int width,height;
     
-    public Room(int h, int w){
+    public Room(int w, int h){
         map = new String[w][h];
-        for (int x = 0; x < w; x++){
-            for (int y = 0; y < h; y++){
+        width = w;
+        height = h;
+        boolean doorPlaced = false;
+        int chance = -1;
+        Random rand = new Random();
+        for (int y = 0; y < h; y++){
+            for (int x = 0; x < w; x++){
                 if (x == 0 || x == w-1){
-                    map[x][y] = "W";
+                    chance = rand.nextInt(100)+1;
+                    if (chance <= 25 && !doorPlaced){
+                        map[x][y] = "D";
+                        chance = rand.nextInt(100)+1;
+                        if (chance <= 50){
+                            doorPlaced = true;
+                        }
+                    }
+                    else{
+                        map[x][y] = "W";
+                    }
+
                 }
                 else if (y == 0 || y == h-1){
-                    map[x][y] = "W";
+                    if (chance <= 15 && !doorPlaced){
+                        map[x][y] = "D";
+                        chance = rand.nextInt(100)+1;
+                        if (chance <= 50){
+                            doorPlaced = true;
+                        }
+                    }
+                    else{
+                        map[x][y] = "W";
+                    }
+
                 }
                 else{
                     map[x][y] = ".";
@@ -60,8 +105,8 @@ class Room{
     
     public String ToString(){
         String s = new String();
-        for (int x = 0; x < map.length; x++){
-            for (int y = 0; y < map[0].length; y++){
+        for (int y = 0; y < map[0].length; y++){
+            for (int x = 0; x < map.length; x++){
                 s += map[x][y];
             }
             s += "\n";
@@ -70,19 +115,112 @@ class Room{
     }
     
     public void AddCrates(){
-        for (int x = 0; x < map.length; x++){
-            for (int y = 0; y < map[0].length; y++){
-                
+        Random rand = new Random();
+        int chance = -1;
+        String[] adj;
+        for (int y = 0; y < map[0].length; y++){
+            for (int x = 0; x < map.length; x++){
+                if (map[x][y] == "."){
+                    adj = AdjacentTiles(x,y);
+                    for (int z = 0; z < 9; z++){
+                        if (adj[z].equals("W")){
+                            chance = rand.nextInt(100) + 1;
+                            if (chance <= 2){
+                                map[x][y] = "C";
+                            }
+                        }
+                        else if (adj[z].equals("C")){
+                            chance = rand.nextInt(100) + 1;
+                            if (chance <= 5){
+                                map[x][y] = "C";
+                            }
+                        }
+                    }
+
+                }
             }
         }
     }
-    
-    public String[] AdjacentTiles(int xLoc, int yLoc){
-        String[] adj = new String[8];
-        if (map[xLoc-1][yLoc-1] != null){
-            
+
+    public void AddBarrels(){
+        Random rand = new Random();
+        int chance = -1;
+        String[] adj;
+        for (int y = 0; y < map[0].length; y++){
+            for (int x = 0; x < map.length; x++){
+                if (map[x][y] == "."){
+                    adj = AdjacentTiles(x,y);
+                    for (int z = 0; z < 9; z++){
+                        if (adj[z].equals("W")){
+                            chance = rand.nextInt(100) + 1;
+                            if (chance <= 5){
+                                map[x][y] = "B";
+                            }
+                        }
+                        else if (adj[z].equals("B")){
+                            chance = rand.nextInt(100) + 1;
+                            if (chance <= 5){
+                                map[x][y] = "B";
+                            }
+                        }
+                    }
+
+                }
+            }
         }
-        
+    }
+
+
+    public void AddHoles(){
+        Random rand = new Random();
+        int chance = -1;
+        int holeCount = -1;
+        String[] adj;
+        for (int y = 0; y < map[0].length; y++){
+            for (int x = 0; x < map.length; x++){
+                if (map[x][y] == "."){
+                    adj = AdjacentTiles(x,y);
+                    holeCount = 0;
+                    for (int z = 0; z < 9; z++){
+                        if (adj[z].equals(".") || adj[z].equals("H")){
+                            holeCount++;
+                        }
+                    }
+                    if (holeCount >= 3){
+                        chance = rand.nextInt(100)+1;
+                        if (chance <= 5){
+                            map[x][y] = "H";
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    //MY X AND Y ARE SWITCHED AROUND B CAREFUL
+    public String[] AdjacentTiles(int xLoc, int yLoc){
+        String[] adj = new String[9];
+        int adjCount = 0;
+        for (int x = -1; x < 2; x++){
+            for (int y = -1; y < 2; y++) {
+                if (x == 0 && y == 0){
+                    adj[adjCount] = "*";
+                    adjCount++;
+                }
+                else{
+                    if (map[x + xLoc][y + yLoc] == null || (x+xLoc) < 0 || (x+xLoc) > width || (y+yLoc) < 0 || (y+yLoc) > height){
+                        adj[adjCount] = "null";
+                    }
+                    else {
+                        adj[adjCount] = map[x + xLoc][y + yLoc];
+                    }
+                    adjCount++;
+                }
+            }
+        }
+        return adj;
+
     }
     
     
