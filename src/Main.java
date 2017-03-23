@@ -558,6 +558,178 @@ class Crate{
 
 }
 
+class Event{
+
+    String attribute, item, value, relevence, omen;
+    int amount, chance;
+    boolean moving;
+    
+    public Event(){
+        Random rand = new Random();
+        chance = rand.nextInt(2);
+        //Still
+        if (chance == 0){
+            moving = false;
+        }
+        //Moving
+        else if (chance == 1){
+            moving = true;
+        }
+        else{
+            moving = null;
+        }
+        
+        chance = rand.nextInt(6);
+        //Item
+        if (chance == 0){
+            if (moving){
+                item = "Fog";
+            }
+            else{
+                item = "Tree";
+            }
+        }
+        else if (chance == 1){
+            if (moving){
+                item = "Snails";
+            }
+            else{
+                item = "Bridge";
+            }
+        }
+        else if (chance == 2){
+            if (moving){
+                item = "Butterfly";
+            }
+            else{
+                item = "Fruit";
+            }
+        }
+        else if (chance == 3){
+            if (moving){
+                item = "Worm";
+            }
+            else{
+                item = "Bones";
+            }
+        }
+        else if (chance == 4){
+            if (moving){
+                item = "Leaves";
+            }
+            else{
+                item = "Tower";
+            }
+        }
+        else if (chance == 5){
+            if (moving){
+                items = "Floating Orb";
+            }
+            else{
+                items = "Wreckage";
+            }
+        }
+        else{
+            item = "ERR";
+        }
+        
+        //ATTRIBUTES
+        chance = rand.nextInt(10);
+        if (chance == 0){
+            attribute = "Giant";
+        }
+        else if (chance == 1){
+            attribute = "Tiny";
+        }
+        else if (chance == 2){
+            if (moving){
+                attribute = "Fast";
+            }
+            else{
+                attribute = "Tasty";
+            }
+        }
+        else if (chance == 3){
+            if (moving){
+                attribute = "Slow";
+            }
+            else{
+                attribute = "Smelly";
+            }
+        }
+        else if (chance == 4){
+            attribute = "Tasty";
+        }
+        else if (chance == 5){
+            attribute = "Smelly";
+        }
+        else if (chance == 6){
+            if (moving){
+                attribute = "Flying";
+            }
+            else{
+                attribute = "Engraved";
+            }
+        }
+        else if (chance == 7){
+            attribute = "Engraved";
+        }
+        else if (chance == 8){
+            attribute = "Meaty";
+        }
+        else if (chance == 9){
+            attribute = "Sentient";
+        }
+        
+        //AMOUNT
+        chance = rand.nextInt(8);
+        if (chance  <= 3){
+            amount = 1;
+        }
+        else if (chance == 4){
+            amount = 2;
+        }
+        else if (chance == 5){
+            amount = 3;
+        }
+        else if (chance == 6){
+            amount = 5;
+        }  
+        else if (chance == 7){
+            amount = 20;
+        }
+        else{
+            amount = -999999;
+        }
+        
+        //VALUE
+        chance = rand.nextInt(6);
+        if (chance == 0){
+            value = "Worthless";
+        }
+        else if (chance == 1){
+            value = "Prized";
+        }
+        else if (chance == 2){
+            value = "Mediocre";
+        }
+        else if (chance == 3){
+            value = "Above-Average";
+        }
+        else if (chance == 4){
+            value = "Decadent";
+        }
+        else if (chance == 5){
+            value = "Incredible";
+        }
+        else{
+            value = "ERR";
+        }
+        
+    }
+    
+}
+
 class Loot{
 
     String type;
