@@ -35,15 +35,20 @@ public class Main {
         //Crate c = new Crate(5);
         //System.out.println(c.ToString());
         
-        Room r = new Room(7,7);
+        /*Room r = new Room(7,7);
         System.out.println("\n" + r.ToString());
         r.AddCrates();
         r.AddBarrels();
         r.AddHoles();
         System.out.println("\n" + r.ToString());
+        */
 
-        Weather w = new Weather();
-        System.out.println(w.ToString());
+        Event e = new Event();
+        System.out.println(e.ToString());
+
+
+        //Weather w = new Weather();
+        //System.out.println(w.ToString());
 
         /*String[] sList = r.AdjacentTiles(1,1);
         System.out.println("\n\n");
@@ -576,7 +581,7 @@ class Event{
             moving = true;
         }
         else{
-            moving = null;
+            System.out.println("ERROR");
         }
         
         chance = rand.nextInt(6);
@@ -623,10 +628,10 @@ class Event{
         }
         else if (chance == 5){
             if (moving){
-                items = "Floating Orb";
+                item = "Floating Orb";
             }
             else{
-                items = "Wreckage";
+                item = "Wreckage";
             }
         }
         else{
@@ -755,7 +760,290 @@ class Event{
         else{
             relevence = "ERR";
         }
-        
+
+        /*
+        //OMEN
+        chance = rand.nextInt(9);
+        if (chance == 0){
+            omen = "Death";
+        } else if (chance == 1){
+            omen = "Creation";
+        }
+        else if (chance == 2) {
+            omen = "Journey";
+        }
+        else if (chance == 3) {
+            omen = "Love";
+        }
+        else if (chance == 4){
+            omen = "Challenges";
+        }
+        else if (chance == 5) {
+            omen = "Ignorance";
+        }
+        else if (chance == 6){
+            omen = "Fortune";
+        }
+        else if (chance == 7){
+            omen = "Sickness";
+        }
+        else if (chance == 8) {
+            omen = "Secrets";
+        }
+        */
+
+
+        //Unique Attribute Testing
+        if (attribute.equals("Tasty")){
+            attribute = "It has a vaguely " + GetFlavor() + " flavor.";
+        } else if (attribute.equals("Smelly")){
+            attribute = "It reeks of " + GetSmell();
+        } else if (attribute.equals("Engraved")){
+            attribute = "It has " + GetEngraving() + " engraved on it.";
+        } else if (attribute.equals("Giant")){
+            attribute = "It's about the size of a tree.";
+        } else if (attribute.equals("Engraved")){
+            attribute = "It has " + GetEngraving() + " engraved on it.";
+        }
+
+    }
+
+    private String GetEngraving(){
+        Random rand = new Random();
+        int chance = rand.nextInt(33);
+        if (chance == 0){
+            if (relevence.equals("Father")){
+                return "your father's name";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 1){
+            if (relevence.equals("Mother")){
+                return "your mother's name";
+            }
+            else{
+                return GetEngraving();
+            }
+        }else if (chance == 2){
+            if (relevence.equals("Past")){
+                return "your own name";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 3){
+            if (relevence.equals("Father")){
+                return "your father's initials";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 4){
+            if (relevence.equals("Mother")){
+                return "your mother's initials";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 5){
+            if (relevence.equals("Past")){
+                return "your own initials";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 6){
+            if (relevence.equals("Father")){
+                return "'(Father's name) is a dirty " + GetInsult();
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 7){
+            if (relevence.equals("Mother")){
+                return "'(Mother's name) is a dirty " + GetInsult();
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 8){
+            if (relevence.equals("Past")){
+                return "'(Your name) is a dirty " + GetInsult();
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 9){
+            if (relevence.equals("Future")){
+                return "'Beware of (Future Encounter)";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 10){
+            if (relevence.equals("Enemy")){
+                return "'(Enemy's name) is a dirty " + GetInsult();
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 11){
+            if (relevence.equals("Enemy")){
+                return "your enemy's name";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 12){
+            if (relevence.equals("Friend")){
+                return "'(Friend's name) is a dirty " + GetInsult();
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 13){
+            if (relevence.equals("Enemy")){
+                return "'(Your name) bows to (Enemy's name)!'";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 14){
+            if (relevence.equals("Future")){
+                return "'(Future encounter) is because of (Your name)!'";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 15){
+            if (relevence.equals("Now")){
+                return "If you are reading this, it is too late.";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 16){
+            if (relevence.equals("Now")){
+                return "'This is my turf!'";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 17){
+            if (relevence.equals("Enemy")){
+                return "'This is (Enemy's name)'s turf!";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 18){
+            if (relevence.equals("Now")){
+                return "you, reading this engraving";
+            }
+            else{
+                return GetEngraving();
+            }
+        } else if (chance == 19){
+            return "'Tunnel Snakes rule!'";
+        } else if (chance == 20){
+            return "arcane symbols";
+        } else if (chance == 21){
+            return "a sly cat";
+        } else if (chance == 22){
+            return "a guard dog";
+        } else if (chance == 23){
+            return "a fox's head";
+        } else if (chance == 24){
+            return "the infinity symbol";
+        } else if (chance == 25){
+            return "an eagle";
+        } else if (chance == 26){
+            return "a stick figure";
+        } else if (chance == 27){
+            return "something phallic";
+        } else if (chance == 28){
+            return "a cross";
+        } else if (chance == 29){
+            return "a sickle";
+        } else if (chance == 30){
+            return "a starburst";
+        } else if (chance == 31){
+            return "a smiling face";
+        } else if (chance == 32){
+            return "a frowning face";
+        } else{
+            return "ERR";
+        }
+    }
+
+    private String GetInsult(){
+        Random rand = new Random();
+        int chance = rand.nextInt(5);
+        if (chance == 0){
+            return "Thief";
+        } else if (chance == 1) {
+            return "Adulterer";
+        } else if (chance == 2){
+            return "Cheater";
+        } else if (chance == 3){
+            return "Murderer";
+        } else if (chance == 4){
+            return "Monster";
+        } else{
+            return "ERR";
+        }
+    }
+
+    private String GetFlavor(){
+        Random rand = new Random();
+        int chance = rand.nextInt(7);
+        if (chance == 0){
+            return "Lemony";
+        } else if (chance == 1) {
+            return "Chicken";
+        } else if (chance == 2){
+            return "Minty";
+        } else if (chance == 3){
+            return "Sugary";
+        } else if (chance == 4){
+            return "Fruity";
+        } else if (chance == 5){
+            return "Buttery";
+        } else if (chance == 6){
+            return "Carmel";
+        } else{
+            return "ERR";
+        }
+    }
+
+    private String GetSmell(){
+        Random rand = new Random();
+        int chance = rand.nextInt(7);
+        if (chance == 0){
+            return "Rot";
+        } else if (chance == 1) {
+            return "Mold";
+        } else if (chance == 2){
+            return "Vomit";
+        } else if (chance == 3){
+            return "Garlic";
+        } else if (chance == 4){
+            return "Fish";
+        } else if (chance == 5){
+            return "Cheese";
+        } else if (chance == 6){
+            return "Smoke";
+        } else{
+            return "ERR";
+        }
+    }
+
+    public String ToString(){
+        String s = new String();
+        s += amount + " of " + attribute +" " + item;
+
+        return s;
     }
     
 }
