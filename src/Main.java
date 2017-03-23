@@ -726,6 +726,36 @@ class Event{
             value = "ERR";
         }
         
+        //RELEVANCE
+        chance = rand.nextInt(8);
+        if (chance == 0){
+            relevence = "Father";
+        }
+        else if (chance == 1){
+            relevence = "Past";
+        }
+        else if (chance == 2){
+            relevence = "Future";
+        }
+        else if (chance == 3){
+            relevence = "Now";
+        }
+        else if (chance == 4){
+            relevence = "Enemy";
+        }
+        else if (chance == 5){
+            relevence = "Friend";
+        }
+        else if (chance == 6){
+            relevence = "Global";
+        }
+        else if (chance == 7){
+            relevence = "Mother";
+        }
+        else{
+            relevence = "ERR";
+        }
+        
     }
     
 }
