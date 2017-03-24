@@ -6,7 +6,7 @@ My goal is to make a program that is the ultimate GM assistant.
 2) (DONE) Random structures
 3) (DONE) Random loot
 4) (DONE) Random events
-5) Building full stories, beginning, middle and end.
+5) (DONE) Building full stories, beginning, middle and end.
 6) Randomly generating enemies with HP, SPD, Attacks and DMG done, AC and DR.
 7) Random mini-bosses with all of the above and unique moves.
 8) Structures have randomly generated lore.
