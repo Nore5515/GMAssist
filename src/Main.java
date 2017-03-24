@@ -46,9 +46,12 @@ public class Main {
         //Event e = new Event();
         //System.out.println(e.ToString());
 
-        Story s = new Story();
-        System.out.println(s.ToString());
+        //Story s = new Story();
+        //System.out.println(s.ToString());
 
+        Enemy e = new Enemy(20);
+        System.out.println(e.ToString());
+        System.out.println(e.strongChance + "," +  e.weakChance);
 
         //Weather w = new Weather();
         //System.out.println(w.ToString());
@@ -681,6 +684,119 @@ class Story{
         return s;
     }
 
+}
+
+
+class Enemy{
+
+    float solBudget;
+    int strongChance,weakChance;
+    List<Integer> stats = new ArrayList<Integer>();
+    int HP,SPD,ACC,DMG,AC,DR,SPC;
+    float strong,normal,weak;
+
+    public Enemy(int payment){
+
+        strong = 0.3f;
+        normal = 0.15f;
+        weak = 0.10f;
+
+        stats.add(HP);
+        stats.add(SPD);
+        stats.add(ACC);
+        stats.add(DMG);
+        stats.add(AC);
+        stats.add(DR);
+        stats.add(SPC);
+
+        solBudget = (float)payment;
+        Random rand = new Random();
+        strongChance = rand.nextInt(7);
+        weakChance = rand.nextInt(7);
+
+        while(strongChance == weakChance){
+            weakChance = rand.nextInt(7);
+        }
+
+        AllElse(strongChance,weakChance);
+
+        //HP costs 0.25 sol
+        stats.set(0,4 * stats.get(0));
+        //SPD costs 1.5 sol
+        stats.set(1, (int) (Math.round(stats.get(1)) * 0.67));
+        //ACC costs 1 sol
+        //ACC = ACC;
+        //DMG costs 1 sol
+        //DMG = DMG;
+        //AC costs 1 sol
+        //AC = AC;
+        //DR costs 3 sol
+        DR = Math.round(DR/3);
+        //SPC cost 1 sol
+        //SPC = SPC;
+    }
+
+    public void AllElse(int stronk, int weok){
+        for (int x = 0; x < 7; x++){
+            if (x == stronk){
+                stats.set(x,Math.round(solBudget * strong));
+            } else if (x == weok){
+                stats.set(x,Math.round(solBudget * weak));
+            } else{
+                stats.set(x,Math.round(solBudget * normal));
+            }
+        }
+    }
+
+    public String SpecATK(){
+        Random rand = new Random();
+        int chance;
+        if (stats.get(6) >= 2){
+            if (stats.get(6) >= 3){
+                if (stats.get(6) >= 4){
+                    if (stats.get(6) >= 5){
+                        chance = rand.nextInt(3);
+                        if (chance == 0){
+                            return "Splash ATK (3x3) (Ranged)";
+                        } else if (chance == 1){
+                            return "Magic ATK (Ranged) (+4 DMG) (+4 ACC)";
+                        } else if (chance == 2){
+                            return "Group Heal (3 Allies) (Full HP)";
+                        } else{
+                            return "ERR";
+                        }
+                    }
+                    return "Spell (General Minor Magic)";
+                }
+                return "Focused ATK (+2 DMG) (+4 ACC)";
+            }
+            chance = rand.nextInt(2);
+            if (chance == 0){
+                return "Ranged ATK (Ranged) (-1 DMG)";
+            }
+            else if (chance == 1){
+                return "Heal (Self) (Full HP)";
+            }
+            else{
+                return "ERR";
+            }
+        }
+        chance = rand.nextInt(6);
+        stats.set(chance, stats.get(chance) + 1);
+        return "Bonus to " + chance;
+    }
+
+    public String ToString(){
+        String s = new String();
+        s += "HP: " + stats.get(0);
+        s +="\nSPD: " + stats.get(1);
+        s +="\nACC: " + stats.get(2);
+        s += "\nDMG: 1d6+(" + (stats.get(3)-2) + ")";
+        s += "\nAC: " + (stats.get(4) + 8);
+        s += "\nDR: " + stats.get(5);
+        s += "\nSPC: " + SpecATK();
+        return s;
+    }
 }
 
 class Event{
