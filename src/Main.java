@@ -43,8 +43,11 @@ public class Main {
         System.out.println("\n" + r.ToString());
         */
 
-        Event e = new Event();
-        System.out.println(e.ToString());
+        //Event e = new Event();
+        //System.out.println(e.ToString());
+
+        Story s = new Story();
+        System.out.println(s.ToString());
 
 
         //Weather w = new Weather();
@@ -563,12 +566,129 @@ class Crate{
 
 }
 
+class Story{
+
+    String type,theme,main,setting,rising,climax,motif;
+    int chance;
+
+    public Story(){
+        Random rand = new Random();
+
+        //TYPE OF STORY
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            type = "a scroll";
+        } else if (chance == 1){
+            type = "a play";
+        } else if (chance == 2){
+            type = "a story";
+        } else if (chance == 3){
+            type = "a poem";
+        } else{
+            type = "ERR";
+        }
+
+        //THEME
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            theme = "true love";
+        } else if (chance == 1){
+            theme = "the unknown";
+        } else if (chance == 2){
+            theme = "revenge";
+        } else if (chance == 3){
+            theme = "justice";
+        } else{
+            theme = "ERR";
+        }
+
+        //MAIN
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            main = "a ranger";
+        } else if (chance == 1){
+            main = "a wanderer";
+        } else if (chance == 2){
+            main = "a lowly farmer";
+        } else if (chance == 3){
+            main = "a noble";
+        } else{
+            main = "ERR";
+        }
+
+        //SETTING
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            setting = "a forgotten place";
+        } else if (chance == 1){
+            setting = "another dimension";
+        } else if (chance == 2){
+            setting = "the criminal underground";
+        } else if (chance == 3){
+            setting = "the city streets";
+        } else{
+            setting = "ERR";
+        }
+
+        //ACTION RISING
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            rising = "a threat on their life";
+        } else if (chance == 1){
+            rising = "someone framing them for murder";
+        } else if (chance == 2){
+            rising = "finding their true love";
+        } else if (chance == 3){
+            rising = "learning forbidden secrets";
+        } else{
+            rising = "ERR";
+        }
+
+        //Climax
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            climax = "a final battle";
+        } else if (chance == 1){
+            climax = "a showdown";
+        } else if (chance == 2){
+            climax = "a duel";
+        } else if (chance == 3){
+            climax = "a challenge";
+        } else{
+            climax = "ERR";
+        }
+
+        //motif
+        chance = rand.nextInt(4);
+        if (chance == 0){
+            motif = "Religion";
+        } else if (chance == 1){
+            motif = "Killing";
+        } else if (chance == 2){
+            motif = "Guilt";
+        } else if (chance == 3){
+            motif = "Honor";
+        } else{
+            motif = "ERR";
+        }
+    }
+
+    public String ToString(){
+        String s = new String();
+        s += "This is " + type + " about " + theme + ".\nThe story is about " +main + ", taking place in " + setting + ".\n";
+        s += "It is about " + rising + ", eventually leading to " + climax +".\n";
+        s += motif + " plays an important role in the story.";
+        return s;
+    }
+
+}
+
 class Event{
 
-    String attribute, item, value, relevence, omen;
+    String attribute, attributeDesc, item, value, relevence, omen;
     int amount, chance;
     boolean moving;
-    
+
     public Event(){
         Random rand = new Random();
         chance = rand.nextInt(2);
@@ -583,7 +703,7 @@ class Event{
         else{
             System.out.println("ERROR");
         }
-        
+
         chance = rand.nextInt(6);
         //Item
         if (chance == 0){
@@ -596,7 +716,7 @@ class Event{
         }
         else if (chance == 1){
             if (moving){
-                item = "Snails";
+                item = "Snail";
             }
             else{
                 item = "Bridge";
@@ -615,12 +735,12 @@ class Event{
                 item = "Worm";
             }
             else{
-                item = "Bones";
+                item = "Bone";
             }
         }
         else if (chance == 4){
             if (moving){
-                item = "Leaves";
+                item = "Leaf";
             }
             else{
                 item = "Tower";
@@ -637,7 +757,7 @@ class Event{
         else{
             item = "ERR";
         }
-        
+
         //ATTRIBUTES
         chance = rand.nextInt(10);
         if (chance == 0){
@@ -685,7 +805,7 @@ class Event{
         else if (chance == 9){
             attribute = "Sentient";
         }
-        
+
         //AMOUNT
         chance = rand.nextInt(8);
         if (chance  <= 3){
@@ -699,14 +819,14 @@ class Event{
         }
         else if (chance == 6){
             amount = 5;
-        }  
+        }
         else if (chance == 7){
             amount = 20;
         }
         else{
             amount = -999999;
         }
-        
+
         //VALUE
         chance = rand.nextInt(6);
         if (chance == 0){
@@ -730,7 +850,7 @@ class Event{
         else{
             value = "ERR";
         }
-        
+
         //RELEVANCE
         chance = rand.nextInt(8);
         if (chance == 0){
@@ -795,17 +915,189 @@ class Event{
 
         //Unique Attribute Testing
         if (attribute.equals("Tasty")){
-            attribute = "It has a vaguely " + GetFlavor() + " flavor.";
+            attributeDesc = "It has a vaguely " + GetFlavor() + " flavor.";
         } else if (attribute.equals("Smelly")){
-            attribute = "It reeks of " + GetSmell();
+            attributeDesc = "It reeks of " + GetSmell() +".";
         } else if (attribute.equals("Engraved")){
-            attribute = "It has " + GetEngraving() + " engraved on it.";
+            attributeDesc = "It has " + GetEngraving() + " engraved on it.";
+        } else if (attribute.equals("Engraved")){
+            attributeDesc = "It has " + GetEngraving() + " engraved on it.";
         } else if (attribute.equals("Giant")){
-            attribute = "It's about the size of a tree.";
-        } else if (attribute.equals("Engraved")){
-            attribute = "It has " + GetEngraving() + " engraved on it.";
+            attributeDesc = "It " + GetBig();
+        } else if (attribute.equals("Tiny")){
+            attributeDesc = "It " + GetSmall();
+        } else if (attribute.equals("Fast")){
+            attributeDesc = "It " + GetFast();
+        } else if (attribute.equals("Slow")){
+            attributeDesc = "It " + GetSlow();
+        } else if (attribute.equals("Flying")){
+            attributeDesc = "It " + GetFlying();
+        } else if (attribute.equals("Meaty")){
+            attributeDesc = "It " + GetMeaty();
+        } else if (attribute.equals("Sentient")){
+            attributeDesc = "It " + GetSentient();
+        } else{
+            attributeDesc = "ERR";
         }
 
+        //Relevence to Text
+        if (relevence.equals("Father")){
+            relevence = "It vaguely reminds you of your father.";
+        } else if (relevence.equals("Past")){
+            relevence = "Have you seen this before?";
+        } else if (relevence.equals("Future")){
+            relevence = "Perhaps of some use, at some point?";
+        } else if (relevence.equals("Now")){
+            relevence = "This feels important.";
+        } else if (relevence.equals("Enemy")){
+            relevence = "Looking at it makes you angry.";
+        } else if (relevence.equals("Friend")){
+            relevence = "Looking at it makes you feel homesick.";
+        } else if (relevence.equals("Global")){
+            relevence = "This feels very important.";
+        } else if (relevence.equals("Mother")){
+            relevence = "It vaguely reminds you of your mother.";
+        } else{
+            relevence = "ERR";
+        }
+
+
+
+        //Value to Text
+        if (value.equals("Worthless")){
+            value = "It would be hard to find someone who would want this.";
+        } else if (value.equals("Decadent")){
+            value = "Selling this to someone would be insulting.";
+        } else if (value.equals("Mediocre")){
+            value = "It probably has some value.";
+        } else if (value.equals("Above-Average")){
+            value = "It's properties could be of some value.";
+        } else if (value.equals("Prized")) {
+            value = "It seems of great value.";
+        } else if (value.equals("Incredible")){
+            value = "This could sell for a LOT of money.";
+        } else{
+            value = "ERR";
+        }
+    }
+
+    private String GetFlying(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "flutters in the wind.";
+        } else if (chance == 1){
+            return "furiously flaps a little pair of wings.";
+        } else if (chance == 2){
+            return "levitates a few feet off the ground.";
+        } else if (chance == 3){
+            return "rises like a balloon.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetMeaty(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "has bulging veins.";
+        } else if (chance == 1){
+            return "has well toned muscles.";
+        } else if (chance == 2){
+            return "is awfully squishy.";
+        } else if (chance == 3){
+            return "is beating like a heart.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetSentient(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "seems to be watching you.";
+        } else if (chance == 1){
+            return "makes weird noises when not watched.";
+        } else if (chance == 2){
+            return "is continuously babbling about nonsense.";
+        } else if (chance == 3){
+            return "moves when not watched.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetFast(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "becomes a blur when it moves.";
+        } else if (chance == 1){
+            return "could cut you if you get too close.";
+        } else if (chance == 2){
+            return "moves at a brisk pace.";
+        } else if (chance == 3){
+            return "is hard to keep up with.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetSlow(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "is slower than a snail.";
+        } else if (chance == 1){
+            return "is growing moss.";
+        } else if (chance == 2){
+            return "slowly trudges around.";
+        } else if (chance == 3){
+            return "is slower than a rock.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetSmall(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "sits below your ankles.";
+        } else if (chance == 1){
+            return "sits a few feet beneath you.";
+        } else if (chance == 2){
+            return "could get squashed by an ant.";
+        } else if (chance == 3){
+            return "fits in your hand perfectly.";
+        }
+        else{
+            return "ERR";
+        }
+    }
+
+    private String GetBig(){
+        Random rand = new Random();
+        int chance = rand.nextInt(4);
+        if (chance == 0){
+            return "towers over you.";
+        } else if (chance == 1){
+            return "could step on you.";
+        } else if (chance == 2){
+            return "has a few feet on you.";
+        } else if (chance == 3){
+            return "could throw a mountain at you.";
+        }
+        else{
+            return "ERR";
+        }
     }
 
     private String GetEngraving(){
@@ -1041,7 +1333,15 @@ class Event{
 
     public String ToString(){
         String s = new String();
-        s += amount + " of " + attribute +" " + item;
+        String sVal = new String();
+        if (amount > 1){
+            sVal = "s";
+        }else{
+            sVal = "";
+        }
+        s += amount + " " + item + sVal +".\n\t" + attributeDesc;
+        s += "\n\t" + value;
+        s += "\n\t" + relevence;
 
         return s;
     }
