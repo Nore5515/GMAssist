@@ -9,6 +9,6 @@ My goal is to make a program that is the ultimate GM assistant.
 5) (DONE) Building full stories, beginning, middle and end.
 6) (DONE) Randomly generating enemies with HP, SPD, Attacks and DMG done, AC and DR.
 7) (DONE) Random mini-bosses with all of the above and unique moves.
-8) Structures have randomly generated lore.
+8) (DONE) Structures have randomly generated lore.
 9) Shops with random gear and equipment with pricing
 10) Different themes (like upbeat, dramatic, adventure)
