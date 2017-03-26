@@ -11,4 +11,4 @@ My goal is to make a program that is the ultimate GM assistant.
 7) (DONE) Random mini-bosses with all of the above and unique moves.
 8) (DONE) Structures have randomly generated lore.
 9) Shops with random gear and equipment with pricing
-10) Different themes (like upbeat, dramatic, adventure)
+10) (REMOVED) Different themes (like upbeat, dramatic, adventure)
