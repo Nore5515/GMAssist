@@ -12,3 +12,8 @@ My goal is to make a program that is the ultimate GM assistant.
 8) (DONE) Structures have randomly generated lore.
 9) Shops with random gear and equipment with pricing
 10) (REMOVED) Different themes (like upbeat, dramatic, adventure)
+
+A NEW CHALLENGER HAS APPEARED
+
+11) Add a UI
+12) Make it an .exe
