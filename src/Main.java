@@ -1,6 +1,12 @@
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * Created by Nore5515 on 3/19/2017.
@@ -27,10 +33,118 @@ import java.util.ArrayList;
     //  B is barrel
     //  H is hole
 
+    //ENEMIES SHOULD HAVE MINI-BOSS MODE
+    //HP IS LIKE 4x AND SPEC-SOL IS LIKE 0.25
+
 
 public class Main {
     public static void main(String args[]){
         System.out.println("Hello World!");
+
+
+        //GUI STUFF
+        JFrame f = new JFrame("GM-Assist");
+
+        final JTextArea textArea = new JTextArea();
+
+        JViewport scrollPane = new JViewport();
+        scrollPane.add(textArea);
+
+        //WEATHER BUTTON
+        JButton bWeather = new JButton("Weather");
+        bWeather.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                Weather w  = new Weather();
+                textArea.append(w.ToString() + "\n");
+                System.out.println("Weather");
+            }
+        });
+        //b.setBounds(130,100,100,40);    //Sets bounds (aka xLoc,yLoc,width,height)
+
+        //EVENT BUTTON
+        JButton bEvent = new JButton("Event");
+        bEvent.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                Event e = new Event();
+                textArea.append(e.ToString() + "\n");
+                System.out.println("Event");
+            }
+        });
+
+        //ROOM BUTTON (BROKEN)
+        JButton bRoom = new JButton("Room");
+        bRoom.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                Room r = new Room(7,7);
+                textArea.append(r.ToString() + "\n");
+                System.out.println("Room");
+            }
+        });
+
+        //CLEAR BUTTON
+        JButton bClear = new JButton("Clear");
+        bClear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                textArea.setText("");
+                System.out.println("Clear");
+            }
+        });
+
+        //STORY BUTTON
+        JButton bStory = new JButton("Story");
+        bStory.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                Story s = new Story();
+                textArea.append(s.ToString() + "\n");
+                System.out.println("Story");
+            }
+        });
+
+        //ENEMY BUTTON
+        JButton bEnemy = new JButton("Enemy");
+        bEnemy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFrame eF = new JFrame();
+
+                String s = (String)JOptionPane.showInputDialog(eF,"Investment: ");
+
+               Enemy e = new Enemy(Integer.parseInt(s));
+                textArea.append(e.ToString() + "\n");
+                System.out.println("Enemy");
+            }
+        });
+
+        //BUTTON PANEL
+        JPanel p = new JPanel(new GridLayout(3,2));
+        p.add(bWeather);
+        p.add(bEvent);
+        p.add(bClear);
+        p.add(bStory);
+        p.add(bEnemy);
+        //p.add(bRoom);
+
+        //MAIN FRAME
+        f.setLayout(new BorderLayout());
+        f.add(p,BorderLayout.WEST);
+        f.add(scrollPane, BorderLayout.EAST);
+
+        //BORING FRAME STUFF
+        f.setSize(800,500);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
+
+
+
+
+
+
+
+
+
+        //TESTING MATERIAL
 
         //Crate c = new Crate(5);
         //System.out.println(c.ToString());
@@ -49,9 +163,9 @@ public class Main {
         //Story s = new Story();
         //System.out.println(s.ToString());
 
-        Enemy e = new Enemy(20);
-        System.out.println(e.ToString());
-        System.out.println(e.strongChance + "," +  e.weakChance);
+        //Enemy e = new Enemy(20);
+        //System.out.println(e.ToString());
+        //System.out.println(e.strongChance + "," +  e.weakChance);
 
         //Weather w = new Weather();
         //System.out.println(w.ToString());
@@ -121,10 +235,11 @@ class Room{
         String s = new String();
         for (int y = 0; y < map[0].length; y++){
             for (int x = 0; x < map.length; x++){
-                s += map[x][y];
+                s += String.format(map[x][y], "");
             }
             s += "\n";
         }
+
         return s;
     }
     
@@ -535,11 +650,13 @@ class Weather{
 
     public String ToString(){
         String s = new String();
+        s += "-------------------------------------\n";
+        s += "Weather\n";
         s += "Temperature: \t\t" + temp;
         s += "\nLight Coverage: \t" + light;
-        s += "\nHumidity:  \t\t\t" + humidity;
+        s += "\nHumidity:  \t\t" + humidity;
         s += "\nPrecipitation: \t\t" + precip;
-        s += "\nWind: \t\t\t\t" + wind;
+        s += "\nWind: \t\t" + wind;
         s += "\nAir Pressure: \t\t" + pressure;
         return s;
     }
@@ -678,6 +795,7 @@ class Story{
 
     public String ToString(){
         String s = new String();
+        s += "-------------------------------------\n";
         s += "This is " + type + " about " + theme + ".\nThe story is about " +main + ", taking place in " + setting + ".\n";
         s += "It is about " + rising + ", eventually leading to " + climax +".\n";
         s += motif + " plays an important role in the story.";
@@ -788,6 +906,7 @@ class Enemy{
 
     public String ToString(){
         String s = new String();
+        s += "-------------------------------------\n";
         s += "HP: " + stats.get(0);
         s +="\nSPD: " + stats.get(1);
         s +="\nACC: " + stats.get(2);
@@ -1455,10 +1574,10 @@ class Event{
         }else{
             sVal = "";
         }
+        s += "-------------------------------------\n";
         s += amount + " " + item + sVal +".\n\t" + attributeDesc;
         s += "\n\t" + value;
         s += "\n\t" + relevence;
-
         return s;
     }
     
