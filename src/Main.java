@@ -43,7 +43,7 @@ public class Main {
 
 
         //GUI STUFF
-        JFrame f = new JFrame("GM-Assist");
+        final JFrame f = new JFrame("GM-Assist");
 
         final JTextArea textArea = new JTextArea();
 
@@ -114,14 +114,46 @@ public class Main {
             }
         });
 
+        //CRATE BUTTON
+        JButton bCrate= new JButton("Crate");
+        bCrate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFrame eF = new JFrame();
+
+
+                Object[] options = {"Crate","Barrel","Chest"};
+                int n = JOptionPane.showOptionDialog(f,"Type?","Loot Selection",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[2]);
+
+                Random rand = new Random();
+                Loot l;
+                textArea.append("-------------------------------------\n");
+                if (n == 0){
+                    l = new Loot("Crate");
+                    textArea.append(l.loot + "\n");
+                }
+                 else if (n == 1){
+                    l = new Loot("Barrel");
+                    textArea.append(l.loot + "\n");
+                } else if (n == 2){
+                    l = new Loot("Chest");
+                    textArea.append(l.loot + "\n");
+                } else{
+                    System.out.println("ERR");
+                }
+
+                System.out.println("Lootchest");
+            }
+        });
+
         //BUTTON PANEL
         JPanel p = new JPanel(new GridLayout(3,2));
         p.add(bWeather);
         p.add(bEvent);
-        p.add(bClear);
         p.add(bStory);
         p.add(bEnemy);
         //p.add(bRoom);
+        p.add(bCrate);
+        p.add(bClear);
 
         //MAIN FRAME
         f.setLayout(new BorderLayout());
@@ -1591,7 +1623,7 @@ class Loot{
     public Loot(String _type){
         Random rand = new Random();
         type = _type;
-        if (type.equals("crate")){
+        if (type.equals("Crate")){
             int chance = rand.nextInt(20)+1;
             if (chance == 1){
                 loot = "Coal";
@@ -1636,7 +1668,7 @@ class Loot{
                 loot = "ERR";
             }
         }
-        else if (type.equals("barrel")){
+        else if (type.equals("Barrel")){
             int chance = rand.nextInt(20)+1;
             if (chance == 1){
                 loot = "Seeds";
@@ -1678,7 +1710,7 @@ class Loot{
                 loot = "ERR";
             }
         }    
-        else if (type.equals("chest")){
+        else if (type.equals("Chest")){
             int chance = rand.nextInt(20)+1;
             if (chance == 1){
                 loot = "Blouse";

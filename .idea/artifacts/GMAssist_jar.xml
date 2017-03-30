@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="GMAssist:jar">
+    <output-path>$PROJECT_DIR$/../</output-path>
+    <root id="root">
+      <element id="archive" name="GMAssist.jar">
+        <element id="module-output" name="GMAssist" />
+      </element>
+    </root>
+  </artifact>
+</component>
