@@ -1,3 +1,5 @@
+DONE
+
 A pet project to work on when I have free time.
 
 My goal is to make a program that is the ultimate GM assistant.
@@ -16,4 +18,4 @@ My goal is to make a program that is the ultimate GM assistant.
 A NEW CHALLENGER HAS APPEARED
 
 11) (DONE) Add a UI
-12) Make it an .exe
+12) (DONE) Make it a jar file
