@@ -10,10 +10,10 @@ My goal is to make a program that is the ultimate GM assistant.
 6) (DONE) Randomly generating enemies with HP, SPD, Attacks and DMG done, AC and DR.
 7) (DONE) Random mini-bosses with all of the above and unique moves.
 8) (DONE) Structures have randomly generated lore.
-9) Shops with random gear and equipment with pricing
+9) (REMOVED) Shops with random gear and equipment with pricing
 10) (REMOVED) Different themes (like upbeat, dramatic, adventure)
 
 A NEW CHALLENGER HAS APPEARED
 
-11) Add a UI
+11) (DONE) Add a UI
 12) Make it an .exe
